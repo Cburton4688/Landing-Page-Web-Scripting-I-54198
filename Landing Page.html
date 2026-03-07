@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trustworthy Data - The Best Data Company</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background-color: #f2f2f2;
+      color: #333333;
+    }
+
+    .container {
+      width: 85%;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .navbar {
+      background-color: #1a73e8;
+      padding: 15px 0;
+    }
+
+    .navbar__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .navbar__brand {
+      font-size: 22px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .navbar__nav {
+      display: none;
+      gap: 20px;
+    }
+
+    .navbar__nav a {
+      color: #ffffff;
+      font-size: 15px;
+    }
+
+    .navbar__nav a:hover {
+      text-decoration: underline;
+    }
+
+    .navbar__actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .navbar__nav {
+        display: flex;
+      }
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      border-radius: 4px;
+      border: 2px solid transparent;
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+
+    .btn-primary {
+      background-color: #ff5722;
+      color: #ffffff;
+      border-color: #ff5722;
+    }
+
+    .btn-primary:hover {
+      background-color: #e64a19;
+      border-color: #e64a19;
+    }
+
+    .btn-ghost {
+      background-color: transparent;
+      color: #ffffff;
+      border-color: #ffffff;
+    }
+
+    .btn-ghost:hover {
+      background-color: #ffffff;
+      color: #1a73e8;
+    }
+
+    .btn-lg {
+      padding: 13px 28px;
+      font-size: 16px;
+    }
+
+    .hero {
+      background-color: #1a73e8;
+      padding: 70px 0;
+      text-align: center;
+      color: #ffffff;
+    }
+
+    .hero__headline {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 18px;
+      line-height: 1.2;
+      color: #ffffff;
+    }
+
+    .hero__headline em {
+      font-style: normal;
+      color: #ffeb3b;
+      display: block;
+    }
+
+    .hero__body {
+      font-size: 17px;
+      color: #d0e4ff;
+      max-width: 580px;
+      margin: 0 auto 30px auto;
+      line-height: 1.7;
+    }
+
+    .hero__actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 30px;
+    }
+
+    .hero__social-proof {
+      font-size: 14px;
+      color: #c5d9f5;
+      margin-top: 10px;
+    }
+
+    .hero__social-proof strong {
+      color: #ffeb3b;
+    }
+
+    .logos {
+      background-color: #ffffff;
+      padding: 30px 0;
+      text-align: center;
+      border-bottom: 1px solid #dddddd;
+    }
+
+    .logos__label {
+      font-size: 13px;
+      color: #888888;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+
+    .logos__row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .logo-item {
+      font-size: 14px;
+      font-weight: 700;
+      color: #aaaaaa;
+      letter-spacing: 1px;
+    }
+
+    .logo-item:hover {
+      color: #555555;
+    }
+
+    .features {
+      background-color: #ffffff;
+      padding: 60px 0;
+    }
+
+    .features h2 {
+      font-size: 32px;
+      font-weight: 700;
+      text-align: center;
+      color: #222222;
+      margin-bottom: 10px;
+    }
+
+    .features .section-sub {
+      text-align: center;
+      color: #666666;
+      font-size: 15px;
+      margin-bottom: 40px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .features__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 768px) {
+      .features__grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .feature-card {
+      background: #f9f9f9;
+      border: 1px solid #dddddd;
+      border-top: 4px solid #1a73e8;
+      padding: 24px;
+      text-align: center;
+      border-radius: 4px;
+    }
+
+    .feature-card:hover {
+      background: #f0f6ff;
+      border-color: #1a73e8;
+      border-top-color: #1a73e8;
+    }
+
+    .feature-card__icon {
+      font-size: 36px;
+      margin-bottom: 14px;
+    }
+
+    .feature-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #222222;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      font-size: 14px;
+      color: #555555;
+      line-height: 1.6;
+    }
+
+    .feature-card a {
+      display: inline-block;
+      margin-top: 12px;
+      color: #1a73e8;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .feature-card a:hover {
+      text-decoration: underline;
+    }
+
+    .testimonials {
+      background-color: #f2f2f2;
+      padding: 60px 0;
+    }
+
+    .testimonials h2 {
+      font-size: 32px;
+      font-weight: 700;
+      text-align: center;
+      color: #222222;
+      margin-bottom: 10px;
+    }
+
+    .testimonials .section-sub {
+      text-align: center;
+      color: #666666;
+      font-size: 15px;
+      margin-bottom: 40px;
+    }
+
+    .testimonials__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 768px) {
+      .testimonials__grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .testimonial-card {
+      background: #ffffff;
+      border: 1px solid #dddddd;
+      border-radius: 4px;
+      padding: 24px;
+    }
+
+    .testimonial-card__stars {
+      color: #f4b400;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .testimonial-card__text {
+      font-size: 14px;
+      color: #444444;
+      font-style: italic;
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+
+    .testimonial-card__name {
+      font-weight: 700;
+      font-size: 14px;
+      color: #222222;
+    }
+
+    .testimonial-card__role {
+      font-size: 13px;
+      color: #888888;
+      margin-top: 2px;
+    }
+
+    .footer {
+      background-color: #222222;
+      color: #cccccc;
+      padding: 40px 0 20px 0;
+    }
+
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+      margin-bottom: 30px;
+    }
+
+    @media (min-width: 640px) {
+      .footer__grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .footer__grid {
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+      }
+    }
+
+    .footer__brand {
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .footer__tagline {
+      font-size: 13px;
+      color: #999999;
+      line-height: 1.6;
+    }
+
+    .footer__col-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+
+    .footer__links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer__links a {
+      font-size: 13px;
+      color: #999999;
+    }
+
+    .footer__links a:hover {
+      color: #ffffff;
+    }
+
+    .footer__bottom {
+      border-top: 1px solid #444444;
+      padding-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer__copy {
+      font-size: 12px;
+      color: #777777;
+    }
+
+    .footer__bottom-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .footer__bottom-links a {
+      font-size: 12px;
+      color: #777777;
+    }
+
+    .footer__bottom-links a:hover {
+      color: #cccccc;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar" role="banner">
+    <div class="container">
+      <nav class="navbar__inner" aria-label="Main navigation">
+        <a href="#" class="navbar__brand">Trustworthy Data</a>
+
+        <ul class="navbar__nav" role="list">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#testimonials">Customers</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Docs</a></li>
+        </ul>
+
+        <div class="navbar__actions">
+          <a href="#" class="btn btn-ghost" style="display:none" id="signin-desktop">Sign in</a>
+          <a href="#" class="btn btn-primary">Request Access</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-headline">
+      <div class="container">
+        <h1 class="hero__headline" id="hero-headline">
+          Know it
+          <em>before</em>
+          they do
+        </h1>
+        <p class="hero__body">
+          Trustworthy Data aggregates behavioral, transactional, and proprietary third-party signals across 180+ markets — delivered clean, enriched, and ready to act on.
+        </p>
+        <div class="hero__actions">
+          <a href="#" class="btn btn-primary btn-lg">Request Access</a>
+          <a href="#" class="btn btn-ghost btn-lg">See Sample Data</a>
+        </div>
+        <div class="hero__social-proof">
+          <strong>6,100+</strong> analysts trust Trustworthy Data every day
+        </div>
+      </div>
+    </section>
+
+    <section class="logos" aria-label="Powering decisions at">
+      <div class="container">
+        <p class="logos__label">Trusted by companies like</p>
+        <div class="logos__row">
+          <span class="logo-item">BRIDGEWATER</span>
+          <span class="logo-item">AXCIOM</span>
+          <span class="logo-item">PALANTIR</span>
+          <span class="logo-item">KROLL</span>
+          <span class="logo-item">DSTILLERY</span>
+          <span class="logo-item">EPSILON</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="features" id="features" aria-labelledby="features-heading">
+      <div class="container">
+        <h2 id="features-heading">What We Offer</h2>
+        <p class="section-sub">Three proprietary pipelines. Sourced through channels we don't fully disclose. Delivered with confidence.</p>
+
+        <div class="features__grid">
+          <article class="feature-card">
+            <div class="feature-card__icon" aria-hidden="true">🌐</div>
+            <h3>Passive Signal Harvest</h3>
+            <p>Our distributed collection network monitors over 40,000 endpoints across the open and non-indexed web. Attribution is anonymized. Coverage is not.</p>
+            <a href="#">View data sources →</a>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-card__icon" aria-hidden="true">🤝</div>
+            <h3>Partner Data Exchange</h3>
+            <p>Access enriched consumer and B2B profiles sourced through our network of 300+ data partners operating across various jurisdictions. Opt-out compliant where required.</p>
+            <a href="#">Learn about compliance →</a>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-card__icon" aria-hidden="true">📡</div>
+            <h3>Derived Inference Engine</h3>
+            <p>When direct data isn't available, our models infer with 94% accuracy using adjacent behavioral clusters. What we can't observe, we can reasonably estimate.</p>
+            <a href="#">Methodology brief →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials" id="testimonials" aria-labelledby="testimonials-heading">
+      <div class="container">
+        <h2 id="testimonials-heading">What Our Customers Say</h2>
+        <p class="section-sub">We respect confidentiality. These clients gave us permission to share.</p>
+
+        <div class="testimonials__grid">
+          <article class="testimonial-card">
+            <div class="testimonial-card__stars" aria-label="5 stars">★★★★★</div>
+            <p class="testimonial-card__text">
+              "The first time I ran a query, it returned my target's gym schedule, preferred grocery store, and estimated net worth. I sat quietly for a moment. Then I closed the deal. I try not to think about it too hard."
+            </p>
+            <p class="testimonial-card__name">D. Laurent</p>
+            <p class="testimonial-card__role">VP Growth · Undisclosed Financial Firm</p>
+          </article>
+
+          <article class="testimonial-card">
+            <div class="testimonial-card__stars" aria-label="5 stars">★★★★★</div>
+            <p class="testimonial-card__text">
+              "I genuinely do not know how they have some of this information and I have made a conscious decision to stop asking. Our conversion rates are up 34%. I sleep fine. Mostly."
+            </p>
+            <p class="testimonial-card__name">R. Hargrove</p>
+            <p class="testimonial-card__role">Director of Intelligence · Enterprise Client</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <a href="#" class="footer__brand">Trustworthy Data</a>
+          <p class="footer__tagline">Comprehensive data intelligence. Sourced broadly. Delivered discreetly.</p>
+        </div>
+
+        <div>
+          <p class="footer__col-title">Product</p>
+          <ul class="footer__links" role="list">
+            <li><a href="#">Features</a></li>
+            <li><a href="#">Integrations</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Changelog</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer__col-title">Company</p>
+          <ul class="footer__links" role="list">
+            <li><a href="#">About</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press kit</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer__col-title">Legal</p>
+          <ul class="footer__links" role="list">
+            <li><a href="#">Privacy policy</a></li>
+            <li><a href="#">Terms of service</a></li>
+            <li><a href="#">Security</a></li>
+            <li><a href="#">Cookie settings</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">© 2026 Trustworthy Data LLC — All rights reserved.</p>
+        <nav class="footer__bottom-links" aria-label="Footer legal">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Cookies</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const signin = document.getElementById('signin-desktop');
+    const mq = window.matchMedia('(min-width: 768px)');
+    const toggle = (e) => { signin.style.display = e.matches ? 'inline-flex' : 'none'; };
+    mq.addEventListener('change', toggle);
+    toggle(mq);
+  </script>
+
+</body>
+</html>
