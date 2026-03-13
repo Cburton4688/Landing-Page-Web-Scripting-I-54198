@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trustworthy Data — The Best Data Company</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    
+    :root {
+      --bg:           #f2f2f2;
+      --bg-white:     #ffffff;
+      --bg-card:      #f9f9f9;
+      --bg-nav:       #1a73e8;
+      --fg:           #333333;
+      --fg-dark:      #222222;
+      --fg-muted:     #555555;
+      --fg-light:     #888888;
+      --accent:       #ff5722;
+      --accent-hover: #e64a19;
+      --blue:         #1a73e8;
+      --blue-light:   #d0e4ff;
+      --yellow:       #ffeb3b;
+      --border:       #dddddd;
+      --footer-bg:    #222222;
+      --footer-fg:    #cccccc;
+      --footer-muted: #999999;
+      --shadow:       0 2px 12px rgba(0,0,0,0.08);
+      --shadow-hover: 0 6px 24px rgba(0,0,0,0.15);
+      --radius:       4px;
+      --nav-height:   56px;
+      --transition:   0.2s ease;
+    }
+
+    [data-theme="dark"] {
+      --bg:           #121212;
+      --bg-white:     #1e1e1e;
+      --bg-card:      #252525;
+      --bg-nav:       #1a73e8;
+      --fg:           #e0e0e0;
+      --fg-dark:      #f5f5f5;
+      --fg-muted:     #aaaaaa;
+      --fg-light:     #777777;
+      --accent:       #ff7043;
+      --accent-hover: #ff5722;
+      --blue:         #1a73e8;
+      --blue-light:   #1a3a5c;
+      --yellow:       #ffd740;
+      --border:       #3a3a3a;
+      --footer-bg:    #0a0a0a;
+      --footer-fg:    #cccccc;
+      --footer-muted: #777777;
+      --shadow:       0 2px 12px rgba(0,0,0,0.4);
+      --shadow-hover: 0 6px 24px rgba(0,0,0,0.6);
+    }
+
+    
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--fg);
+      font-size: 15px;
+      line-height: 1.6;
+      transition: background-color var(--transition), color var(--transition);
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; padding: 0; margin: 0; }
+
+    
+    :focus-visible {
+      outline: 3px solid var(--yellow);
+      outline-offset: 2px;
+      border-radius: var(--radius);
+    }
+
+    
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 700;
+      font-family: 'Roboto', Arial, sans-serif;
+      cursor: pointer;
+      border-radius: var(--radius);
+      border: 2px solid transparent;
+      transition:
+        background-color var(--transition),
+        border-color var(--transition),
+        color var(--transition),
+        transform var(--transition),
+        box-shadow var(--transition);
+    }
+
+    .btn-lg { padding: 13px 28px; font-size: 16px; }
+
+    
+    .btn-primary {
+      background-color: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+      border-color: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(255, 87, 34, 0.4);
+    }
+
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-ghost {
+      background-color: transparent;
+      color: #ffffff;
+      border-color: #ffffff;
+    }
+
+    .btn-ghost:hover {
+      background-color: #ffffff;
+      color: var(--blue);
+    }
+
+    
+    .navbar {
+      background-color: var(--bg-nav);
+      height: var(--nav-height);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: background-color var(--transition);
+    }
+
+    .navbar__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .navbar__brand {
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+      white-space: nowrap;
+    }
+
+    .navbar__nav {
+      display: none;
+      gap: 20px;
+    }
+
+    .navbar__nav a {
+      color: #ffffff;
+      font-size: 14px;
+      opacity: 0.9;
+      transition: opacity var(--transition);
+    }
+
+    .navbar__nav a:hover { opacity: 1; text-decoration: underline; }
+
+    .navbar__actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .theme-toggle {
+      background: rgba(255,255,255,0.15);
+      border: 2px solid rgba(255,255,255,0.4);
+      border-radius: var(--radius);
+      color: #ffffff;
+      font-size: 13px;
+      font-family: 'Roboto', Arial, sans-serif;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 6px 10px;
+      white-space: nowrap;
+      transition: background var(--transition), border-color var(--transition);
+    }
+
+    .theme-toggle:hover {
+      background: rgba(255,255,255,0.28);
+      border-color: #ffffff;
+    }
+
+    .navbar__hamburger {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,0.15);
+      border: 2px solid rgba(255,255,255,0.4);
+      border-radius: var(--radius);
+      cursor: pointer;
+      padding: 8px;
+      transition: background var(--transition);
+    }
+
+    .navbar__hamburger:hover { background: rgba(255,255,255,0.28); }
+
+    .navbar__hamburger span {
+      display: block;
+      height: 2px;
+      background: #ffffff;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      transform-origin: center;
+    }
+
+    .navbar__hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .navbar__hamburger.open span:nth-child(2) { opacity: 0; }
+    .navbar__hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .navbar__mobile {
+      display: none;
+      flex-direction: column;
+      background-color: var(--bg-nav);
+      border-top: 1px solid rgba(255,255,255,0.2);
+      transition: background-color var(--transition);
+    }
+
+    .navbar__mobile.open { display: flex; }
+
+    .navbar__mobile a {
+      color: #ffffff;
+      font-size: 14px;
+      padding: 0.7rem 1.25rem;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      transition: background var(--transition);
+    }
+
+    .navbar__mobile a:last-child { border-bottom: none; }
+    .navbar__mobile a:hover { background: rgba(255,255,255,0.1); }
+
+    
+    .container {
+      width: 85%;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    
+    .hero {
+      background-color: var(--blue);
+      padding: 70px 0;
+      text-align: center;
+      color: #ffffff;
+      transition: background-color var(--transition);
+    }
+
+    
+    .hero__headline {
+      font-size: clamp(2rem, 6vw, 48px);
+      font-weight: 700;
+      margin-bottom: 18px;
+      line-height: 1.2;
+      color: #ffffff;
+      animation: fadeUp 0.6s ease both;
+      animation-delay: 0.1s;
+    }
+
+    .hero__headline em {
+      font-style: normal;
+      color: var(--yellow);
+      display: block;
+    }
+
+    .hero__body {
+      font-size: 17px;
+      color: var(--blue-light);
+      max-width: 580px;
+      margin: 0 auto 30px;
+      line-height: 1.7;
+      animation: fadeUp 0.6s ease both;
+      animation-delay: 0.22s;
+    }
+
+    .hero__actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 30px;
+      animation: fadeUp 0.6s ease both;
+      animation-delay: 0.34s;
+    }
+
+    .hero__social-proof {
+      font-size: 14px;
+      color: #c5d9f5;
+      animation: fadeUp 0.6s ease both;
+      animation-delay: 0.44s;
+    }
+
+    .hero__social-proof strong { color: var(--yellow); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    
+    .logos {
+      background-color: var(--bg-white);
+      padding: 28px 0;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      transition: background-color var(--transition), border-color var(--transition);
+    }
+
+    .logos__label {
+      font-size: 12px;
+      color: var(--fg-light);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+    }
+
+    .logos__row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    .logo-item {
+      font-size: 13px;
+      font-weight: 700;
+      color: #aaaaaa;
+      letter-spacing: 1px;
+      transition: color var(--transition);
+    }
+
+    .logo-item:hover { color: var(--fg-muted); }
+
+    
+    .features {
+      background-color: var(--bg-white);
+      padding: 60px 0;
+      transition: background-color var(--transition);
+    }
+
+    .features h2 {
+      font-size: 32px;
+      font-weight: 700;
+      text-align: center;
+      color: var(--fg-dark);
+      margin-bottom: 10px;
+    }
+
+    .section-sub {
+      text-align: center;
+      color: var(--fg-muted);
+      font-size: 14px;
+      margin-bottom: 40px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .features__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--blue);
+      padding: 24px;
+      text-align: center;
+      border-radius: var(--radius);
+      transition:
+        background var(--transition),
+        border-color var(--transition),
+        transform var(--transition),
+        box-shadow var(--transition);
+    }
+
+    
+    .feature-card:hover {
+      background: var(--bg-white);
+      border-color: var(--blue);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .feature-card__icon {
+      font-size: 36px;
+      margin-bottom: 14px;
+    }
+
+    .feature-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--fg-dark);
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      font-size: 13px;
+      color: var(--fg-muted);
+      line-height: 1.6;
+    }
+
+    .feature-card a {
+      display: inline-block;
+      margin-top: 12px;
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 700;
+      transition: color var(--transition);
+    }
+
+    .feature-card a:hover { text-decoration: underline; }
+
+    
+    .testimonials {
+      background-color: var(--bg);
+      padding: 60px 0;
+      transition: background-color var(--transition);
+    }
+
+    .testimonials h2 {
+      font-size: 32px;
+      font-weight: 700;
+      text-align: center;
+      color: var(--fg-dark);
+      margin-bottom: 10px;
+    }
+
+    .testimonials__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .testimonial-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition:
+        background var(--transition),
+        border-color var(--transition),
+        transform var(--transition),
+        box-shadow var(--transition);
+    }
+
+    
+    .testimonial-card:hover {
+      border-color: var(--blue);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .testimonial-card__stars {
+      color: #f4b400;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .testimonial-card__text {
+      font-size: 14px;
+      color: var(--fg-muted);
+      font-style: italic;
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+
+    .testimonial-card__name {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--fg-dark);
+    }
+
+    .testimonial-card__role {
+      font-size: 13px;
+      color: var(--fg-light);
+      margin-top: 2px;
+    }
+
+    
+    .footer {
+      background-color: var(--footer-bg);
+      color: var(--footer-fg);
+      padding: 40px 0 20px;
+      transition: background-color var(--transition);
+    }
+
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+      margin-bottom: 30px;
+    }
+
+    .footer__brand {
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .footer__tagline {
+      font-size: 13px;
+      color: var(--footer-muted);
+      line-height: 1.6;
+    }
+
+    .footer__col-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+
+    .footer__links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer__links a {
+      font-size: 13px;
+      color: var(--footer-muted);
+      transition: color var(--transition);
+    }
+
+    .footer__links a:hover { color: #ffffff; }
+
+    .footer__bottom {
+      border-top: 1px solid #444444;
+      padding-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer__copy { font-size: 12px; color: #777777; }
+
+    .footer__bottom-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .footer__bottom-links a {
+      font-size: 12px;
+      color: #777777;
+      transition: color var(--transition);
+    }
+
+    .footer__bottom-links a:hover { color: var(--footer-fg); }
+
+    
+    @media (min-width: 768px) {
+      .navbar__nav       { display: flex; }
+      .navbar__hamburger { display: none; }
+      .navbar__mobile    { display: none !important; }
+
+      .features__grid      { grid-template-columns: repeat(3, 1fr); }
+      .testimonials__grid  { grid-template-columns: repeat(2, 1fr); }
+      .footer__grid        { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    
+    @media (min-width: 1024px) {
+      .footer__grid { grid-template-columns: 2fr 1fr 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="container">
+        <div class="navbar__inner">
+
+          <a href="#" class="navbar__brand">Trustworthy Data</a>
+
+          <ul class="navbar__nav" role="list">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#testimonials">Customers</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Docs</a></li>
+          </ul>
+
+          <div class="navbar__actions">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">☽ Dark</button>
+            <a href="#" class="btn btn-primary" style="font-size:13px; padding:8px 16px;">Request Access</a>
+            <button
+              class="navbar__hamburger"
+              id="hamburger"
+              aria-label="Open menu"
+              aria-expanded="false"
+              aria-controls="mobileMenu"
+            >
+              <span></span><span></span><span></span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="navbar__mobile" id="mobileMenu" role="menu">
+        <a href="#features" role="menuitem">Features</a>
+        <a href="#testimonials" role="menuitem">Customers</a>
+        <a href="#" role="menuitem">Pricing</a>
+        <a href="#" role="menuitem">Docs</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero" aria-labelledby="hero-headline">
+      <div class="container">
+        <h1 class="hero__headline" id="hero-headline">
+          Know it
+          <em>before</em>
+          they do
+        </h1>
+        <p class="hero__body">
+          Trustworthy Data aggregates behavioral, transactional, and proprietary
+          third-party signals across 180+ markets — delivered clean, enriched,
+          and ready to act on.
+        </p>
+        <div class="hero__actions">
+          <a href="#" class="btn btn-primary btn-lg">Request Access</a>
+          <a href="#" class="btn btn-ghost btn-lg">See Sample Data</a>
+        </div>
+        <p class="hero__social-proof">
+          <strong>6,100+</strong> analysts trust Trustworthy Data every day
+        </p>
+      </div>
+    </section>
+
+    <section class="logos" aria-label="Trusted by companies like">
+      <div class="container">
+        <p class="logos__label">Trusted by companies like</p>
+        <div class="logos__row">
+          <span class="logo-item">BRIDGEWATER</span>
+          <span class="logo-item">AXCIOM</span>
+          <span class="logo-item">PALANTIR</span>
+          <span class="logo-item">KROLL</span>
+          <span class="logo-item">DSTILLERY</span>
+          <span class="logo-item">EPSILON</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="features" id="features" aria-labelledby="features-heading">
+      <div class="container">
+        <h2 id="features-heading">What We Offer</h2>
+        <p class="section-sub">Three proprietary pipelines. Sourced through channels we don't fully disclose. Delivered with confidence.</p>
+
+        <div class="features__grid">
+          <article class="feature-card">
+            <div class="feature-card__icon" aria-hidden="true">🌐</div>
+            <h3>Passive Signal Harvest</h3>
+            <p>Our distributed collection network monitors over 40,000 endpoints across the open and non-indexed web. Attribution is anonymized. Coverage is not.</p>
+            <a href="#">View data sources →</a>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-card__icon" aria-hidden="true">🤝</div>
+            <h3>Partner Data Exchange</h3>
+            <p>Access enriched consumer and B2B profiles sourced through our network of 300+ data partners operating across various jurisdictions. Opt-out compliant where required.</p>
+            <a href="#">Learn about compliance →</a>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-card__icon" aria-hidden="true">📡</div>
+            <h3>Derived Inference Engine</h3>
+            <p>When direct data isn't available, our models infer with 94% accuracy using adjacent behavioral clusters. What we can't observe, we can reasonably estimate.</p>
+            <a href="#">Methodology brief →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials" id="testimonials" aria-labelledby="testimonials-heading">
+      <div class="container">
+        <h2 id="testimonials-heading">What Our Customers Say</h2>
+        <p class="section-sub">We respect confidentiality. These clients gave us permission to share.</p>
+
+        <div class="testimonials__grid">
+          <article class="testimonial-card">
+            <div class="testimonial-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p class="testimonial-card__text">
+              "The first time I ran a query, it returned my target's gym schedule,
+              preferred grocery store, and estimated net worth. I sat quietly for
+              a moment. Then I closed the deal. I try not to think about it too hard."
+            </p>
+            <p class="testimonial-card__name">D. Laurent</p>
+            <p class="testimonial-card__role">VP Growth · Undisclosed Financial Firm</p>
+          </article>
+
+          <article class="testimonial-card">
+            <div class="testimonial-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p class="testimonial-card__text">
+              "I genuinely do not know how they have some of this information and
+              I have made a conscious decision to stop asking. Our conversion rates
+              are up 34%. I sleep fine. Mostly."
+            </p>
+            <p class="testimonial-card__name">R. Hargrove</p>
+            <p class="testimonial-card__role">Director of Intelligence · Enterprise Client</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <a href="#" class="footer__brand">Trustworthy Data</a>
+          <p class="footer__tagline">Comprehensive data intelligence. Sourced broadly. Delivered discreetly.</p>
+        </div>
+        <div>
+          <p class="footer__col-title">Product</p>
+          <ul class="footer__links" role="list">
+            <li><a href="#">Features</a></li>
+            <li><a href="#">Integrations</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Changelog</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__col-title">Company</p>
+          <ul class="footer__links" role="list">
+            <li><a href="#">About</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press kit</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__col-title">Legal</p>
+          <ul class="footer__links" role="list">
+            <li><a href="#">Privacy policy</a></li>
+            <li><a href="#">Terms of service</a></li>
+            <li><a href="#">Security</a></li>
+            <li><a href="#">Cookie settings</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">© 2026 Trustworthy Data LLC — All rights reserved.</p>
+        <nav class="footer__bottom-links" aria-label="Footer legal links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Cookies</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    
+    const html        = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+
+    function applyTheme(theme) {
+      html.setAttribute('data-theme', theme);
+      themeToggle.textContent = theme === 'dark' ? '☀ Light' : '☽ Dark';
+      themeToggle.setAttribute('aria-label',
+        theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    }
+
+    const saved = localStorage.getItem('td-theme');
+    if (saved) {
+      applyTheme(saved);
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      applyTheme('dark');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+      localStorage.setItem('td-theme', next);
+    });
+
+    
+    const hamburger  = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', String(isOpen));
+      hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
+
+</body>
+</html>
